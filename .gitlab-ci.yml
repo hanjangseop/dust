@@ -1,0 +1,9 @@
+deploy to dust.toycode.org:
+  script:
+  - "npm install"
+  - "forever stop dust || true"
+  - "forever start --uid \"dust\" -a index.js"
+  type: deploy
+  tags:
+  only:
+  - master
