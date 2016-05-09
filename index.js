@@ -7,8 +7,8 @@ var app = require('koa')(),
     Moment = require('moment'),
     less = require('koa-less'),
     serve = require('koa-static'),
-    path = require('path');
-
+    path = require('path'),
+    cors = require('koa-cors');
 
 mongoose.connect("mongodb://localhost:27017/dust");
 var db = mongoose.connection;
@@ -50,9 +50,10 @@ app
       this.originalUrl,
       this.status, used);
   })
-  .use(router.routes())
   .use(less(path.join(__dirname, 'public')))
-  .use(serve(path.join(__dirname, 'public')));
+  .use(serve(path.join(__dirname, 'public')))
+  .use(cors({'origin': true}))
+  .use(router.routes());
 
 app.listen(4000);
 console.log('the app listens on port 4000');
