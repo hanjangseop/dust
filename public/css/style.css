@@ -1,0 +1,30 @@
+.Dtable {
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-family: Agenda-Light, sans-serif;
+  font-weight: 100;
+  background: #d3d3d3; color: #fff;
+  text-rendering: optimizeLegibility;
+  border-radius: 3px;
+  width: 50%;
+}
+table caption {
+  font-size: 2rem; color: #444;
+  margin: 1rem;
+}
+
+table thead th {
+  font-weight: 600;
+  background: #333;
+}
+table thead th, table tbody td {
+  padding: 1rem; font-size: 1rem;
+}
+table tbody td {
+  padding: 1rem; font-size: 1.4rem;
+  color: #d3d3d3;
+}
+table tbody tr:not(:last-child) {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}

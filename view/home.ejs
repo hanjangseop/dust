@@ -1,0 +1,17 @@
+<table class="Dtable">
+  <caption>먼지센서측정</caption>
+  <thead>
+    <tr>
+      <th>날짜/시간</th>
+      <th>먼지측정값</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var i=0; i< data.length; i++){%>
+    <tr>
+      <th><%= Moment(data[i].date).format('YYYYMMDD') %></th>
+      <th><%= data[i].dustvalue %></th>
+    </tr>
+    <%}%>
+  </tbody>
+</table>
