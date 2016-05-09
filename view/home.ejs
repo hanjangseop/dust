@@ -9,7 +9,7 @@
   <tbody>
     <% for(var i=0; i< data.length; i++){%>
     <tr>
-      <th><%= Moment(data[i].date).format('YYYYMMDD') %></th>
+      <th><%= Moment(data[i].date).format('YYYYMMDD, h:mm:ss') %></th>
       <th><%= data[i].dustvalue %></th>
     </tr>
     <%}%>
