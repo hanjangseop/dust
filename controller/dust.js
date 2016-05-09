@@ -4,7 +4,7 @@ var Dust = require('../model/dust'),
 module.exports = {
   all: function *(next) {
     if('GET' != this.method) return yield next;
-    this.body = yield Dust.find();
+    this.body = yield Dust.find().limit(30).sort({date:-1});
   },
   add: function *(next) {
     if('GET' != this.method) return yield next;
