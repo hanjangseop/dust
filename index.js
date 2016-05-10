@@ -19,7 +19,7 @@ db.once('open', function() {
   console.log('connected to DB');
 });
 
-router.get('/:data', dust.add);
+router.get('/data/:data', dust.add);
 router.get('/all', dust.all);
 router.get('/avg', dust.avg);
 router.get('/', function *(next) {
