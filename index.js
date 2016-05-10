@@ -21,6 +21,7 @@ db.once('open', function() {
 
 router.get('/:data', dust.add);
 router.get('/all', dust.all);
+router.get('/avg', dust.avg);
 router.get('/', function *(next) {
   var res = yield request({
     method: 'GET',
