@@ -1,6 +1,6 @@
 var Dust = require('../model/dust'),
     Moment = require('moment')
-    require('moment/locale/kr');
+    require('moment/locale/ko');
 
 module.exports = {
   all: function *(next) {
@@ -18,20 +18,24 @@ module.exports = {
   },
   avg: function *(next) {
     if('GET' != this.method) return yield next;
-    var result = yield aggregate([{
-      $match: {
-        date: {
-          $lt: new Moment().startOf('hour').valueOf(),
-          $gt: new Moment().endOf('hour').valueOf()
-        }
-      },
-      $group: {
-        _id: null,
-        date: new Moment().startOf('hour').valueOf(),
-        dustvalue: { $avg: $dustvalue }
-      }
-    }]);
-    this.body = result;
+    var results = [];
+    for(var i = -5; i <= 0; i++) {
+      var result = yield aggregate([{
+        $match: {
+          date: {
+            $gte: new Moment().add(i, 'hours').startOf('hour').valueOf(),
+            $lte: new Moment().add(i, 'hours').endOf('hour').valueOf()
+          }
+        }
+      }, {
+        $group: {
+          _id: new Moment().add(i, 'hours').startOf('hour').valueOf(),
+          dustvalue: { $avg: "$dustvalue" }
+        }
+      }]);
+      results.push(result);
+    }
+    this.body = results;
   }
 }
 
