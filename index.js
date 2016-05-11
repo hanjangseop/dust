@@ -23,11 +23,14 @@ router.get('/data/:data', dust.add);
 router.get('/all', dust.all);
 router.get('/avg', dust.avg);
 router.get('/', function *(next) {
+  yield this.render('index', {});
+});
+router.get('/table', function *(next) {
   var res = yield request({
     method: 'GET',
     uri: 'http://localhost:4000/all'
   });
-  yield this.render('home', {
+  yield this.render('table', {
     data: JSON.parse(res.body),
     Moment: Moment
   });
@@ -35,7 +38,7 @@ router.get('/', function *(next) {
 
 render(app, {
   root: path.join(__dirname, 'view'),
-  layout: 'layout',
+  layout: false,
   viewExt: 'ejs',
   cache: false,
   debug: true

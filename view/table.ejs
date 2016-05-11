@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>연세대 먼지센서</title>
+</head>
+<body>
+  <table class="Dtable">
+    <caption>먼지센서측정</caption>
+    <thead>
+      <tr>
+        <th>날짜/시간</th>
+        <th>먼지측정값</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i< data.length; i++){%>
+      <tr>
+        <th><%= Moment(data[i].date).format('YYYYMMDD, h:mm:ss', 'ko') %></th>
+        <th><%= data[i].dustvalue %></th>
+      </tr>
+      <%}%>
+    </tbody>
+  </table>
+</body>
+</html>

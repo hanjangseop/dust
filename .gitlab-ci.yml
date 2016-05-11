@@ -1,6 +1,7 @@
 deploy to dust.toycode.org:
   script:
   - "npm install"
+  - "bower install"
   - "forever stop dust || true"
   - "forever start --uid \"dust\" -a index.js"
   type: deploy

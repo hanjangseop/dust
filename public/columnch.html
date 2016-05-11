@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-eval' 'unsafe-inline'">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <h1 style="text-align:center">시간대별 먼지 농도</h1>
+        <div id="loading" style="text-align:center">
+          <img src="img/loading.gif" /><br/>
+          <span>데이터 로딩중...</span>
+        </div>
+        <div id="content" style="display:none">
+          <div id="chart_div"></div>
+          <p style="text-align:center">
+            1시간 단위로 측정된 먼지 농도의 평균 값
+          </p>
+        </div>
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/moment/min/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="js/columnch.js"></script>
+    </body>
+</html>
