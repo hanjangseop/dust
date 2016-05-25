@@ -2,7 +2,7 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(realdata);
 
 function realdata() {
-  $.get("http://dust.toycode.org/all", function(data) {
+  $.get("http://dust.toycode.org/all/0", function(data) {
     drawBasic(data);
   });
   setTimeout(realdata, 10 * 1000);
