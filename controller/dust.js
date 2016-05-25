@@ -29,6 +29,7 @@ module.exports = {
     for(var i = -5; i <= 0; i++) {
       var result = yield aggregate([{
         $match: {
+          ad_id: this.params.ad_id,
           date: {
             $gte: new Moment().add(i, 'hours').startOf('hour').valueOf(),
             $lte: new Moment().add(i, 'hours').endOf('hour').valueOf()
