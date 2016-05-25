@@ -1,6 +1,7 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(realdata);
-$.get("http://dust.toycode.org/ad_id/", function(ids) {
+$.get("http://dust.toycode.org/ad_id", function(ids) {
+  debugger
   ids.forEach(function(item) {
     $("#ad_id").append("<option>" + item.item + "</option>");
   });
