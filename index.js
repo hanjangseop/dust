@@ -19,9 +19,9 @@ db.once('open', function() {
   console.log('connected to DB');
 });
 
-router.get('/data/:data', dust.add);
-router.get('/all', dust.all);
-router.get('/avg', dust.avg);
+router.get('/data/:ad_id/:data', dust.add);
+router.get('/all/:ad_id', dust.all);
+router.get('/avg/:ad_id', dust.avg);
 router.get('/', function *(next) {
   yield this.render('index', {});
 });

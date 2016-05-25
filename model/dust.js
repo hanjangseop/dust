@@ -3,6 +3,7 @@ require('mongoose-moment')(mongoose);
 
 var schema = mongoose.Schema({
   date: 'Moment',
+  ad_id: String,
   dustvalue: Number
 }, {collection: 'dust'});
 

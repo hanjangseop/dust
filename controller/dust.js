@@ -5,12 +5,15 @@ var Dust = require('../model/dust'),
 module.exports = {
   all: function *(next) {
     if('GET' != this.method) return yield next;
-    this.body = yield Dust.find().limit(30).sort({date:-1});
+    this.body = yield Dust.find({
+      ad_id:this.params.ad_id
+    }).limit(30).sort({date:-1});
   },
   add: function *(next) {
     if('GET' != this.method) return yield next;
     var dust = new Dust({
       date: new Moment(),
+      ad_id: this.params.ad_id,
       dustvalue: this.params.data
     });
     yield dust.save();
