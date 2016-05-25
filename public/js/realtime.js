@@ -1,8 +1,13 @@
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(realdata);
-
+$.get("http://dust.toycode.org/ad_id/", function(ids) {
+  ids.forEach(function(item) {
+    $("#ad_id").append("<option>" + item.item + "</option>");
+  });
+});
 function realdata() {
-  $.get("http://dust.toycode.org/all/0", function(data) {
+  var ad_id = $("#ad_id").val();
+  $.get("http://dust.toycode.org/all/" + ad_id, function(data) {
     drawBasic(data);
   });
   setTimeout(realdata, 10 * 1000);
