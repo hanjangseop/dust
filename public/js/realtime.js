@@ -1,23 +1,32 @@
-google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(realdata);
-$.get("http://dust.toycode.org/ad_id/", function(ids) {
-  ids.forEach(function(item) {
-    $("#ad_id").append("<option>" + item.item + "</option>");
-  });
+$.ajax({
+  type: 'GET',
+  url: 'http://dust.toycode.org/ad_id',
+  async: false,
+  success: function(ids) {
+    ids.forEach(function(id) {
+      $("#ad_id").append("<option>" + id + "</option>");
+    });
+    $("#ad_id").change(fetchData);
+  }
 });
-function realdata() {
+
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(fetchData);
+
+var timekey = null;
+function fetchData() {
   var ad_id = $("#ad_id").val();
   $.get("http://dust.toycode.org/all/" + ad_id, function(data) {
     drawBasic(data);
   });
-  setTimeout(realdata, 10 * 1000);
+  clearTimeout(timekey);
+  timekey = setTimeout(fetchData, 10 * 1000);
 }
 
 function drawBasic(result) {
   $("#loading").hide();
   $("#content").show();
 
-  console.log(result[0].date);
   $('#dustvalue').text(parseInt(result[0].dustvalue*100+0.5,10));
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'X');

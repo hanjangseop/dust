@@ -1,8 +1,21 @@
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(realdata);
+$.ajax({
+  type: 'GET',
+  url: 'http://dust.toycode.org/ad_id',
+  async: false,
+  success: function(ids) {
+    ids.forEach(function(id) {
+      $("#ad_id").append("<option>" + id + "</option>");
+    });
+    $("#ad_id").change(fetchData);
+  }
+});
 
-function realdata() {
-  $.get("http://dust.toycode.org/avg", function(data) {
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(fetchData);
+
+function fetchData() {
+  var ad_id = $("#ad_id").val();
+  $.get("http://dust.toycode.org/avg/" + ad_id, function(data) {
     drawBasic(data);
   });
 }
