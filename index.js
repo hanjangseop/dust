@@ -22,6 +22,7 @@ db.once('open', function() {
 router.get('/data/:ad_id/:data', dust.add);
 router.get('/all/:ad_id', dust.all);
 router.get('/avg/:ad_id', dust.avg);
+router.get('/ad_id', dust.ad_id);
 router.get('/', function *(next) {
   yield this.render('index', {});
 });

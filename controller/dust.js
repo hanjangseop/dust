@@ -3,6 +3,10 @@ var Dust = require('../model/dust'),
     require('moment/locale/ko');
 
 module.exports = {
+  ad_id: function *(next) {
+    if('GET' != this.method) return yield next;
+    this.body = yield Dust.find().distinct('ad_id');
+  },
   all: function *(next) {
     if('GET' != this.method) return yield next;
     this.body = yield Dust.find({
